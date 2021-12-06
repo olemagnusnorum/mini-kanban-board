@@ -2,7 +2,7 @@ import Column from "./column"
 import React, {Component} from "react"
 
 
-//muligen ha alle projects state her og hvilken colonne de hører til, slik at jeg kan pase ned riktig
+
 
 
 class ProjectBoard extends Component {
@@ -45,7 +45,7 @@ class ProjectBoard extends Component {
     
     
 
-    //må bruke DELETE fetch
+    
     async removeProjectReal(id, column) {
         if (column == "backlog"){
             const response = await this.deleteProject(id)
@@ -81,7 +81,7 @@ class ProjectBoard extends Component {
     }
     
     
-    //her må vi poste til backend
+    
     async saveProject(newProject) {
         const body = { Name: newProject.projectName, Description: newProject.projectDescription, Stage: "backlog"}
         const data = await this.postProject(body)
@@ -198,14 +198,12 @@ class ProjectBoard extends Component {
 
 
     async fetchProjects() {
-        console.log("in fetch")
         const response = await fetch('http://localhost:5000/api/projects');
         return response.json();
         
     }
 
     async postProject(body){
-        console.log("in save")
         const response = await fetch('http://localhost:5000/api/projects', {
             method: 'POST',
             mode: 'cors',
